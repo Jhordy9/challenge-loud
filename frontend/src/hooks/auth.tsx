@@ -1,15 +1,8 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/api';
 
-interface User {
-  id: string;
-  username: string;
-  email: string;
-}
-
 interface AuthState {
   token: string;
-  user: User;
 }
 
 interface SignInCredentials {
@@ -18,7 +11,7 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: User;
+  token: string;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
 }
@@ -28,11 +21,10 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@ChallengeLOUD:token');
-    const user = localStorage.getItem('@ChallengeLOUD:user');
 
-    if (token && user) {
+    if (token) {
       api.defaults.headers.authorization = `Bearer ${token}`;
-      return { token, user: JSON.parse(user) };
+      return { token };
     }
 
     return {} as AuthState;
@@ -43,26 +35,23 @@ const AuthProvider: React.FC = ({ children }) => {
       username,
       password,
     });
-
-    const { token, user } = response.data;
+    const { token } = response.data;
 
     localStorage.setItem('@ChallengeLOUD:token', token);
-    localStorage.setItem('@ChallengeLOUD:user', JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
-    setData({ token, user });
+    setData({ token });
   }, []);
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@ChallengeLOUD:token');
-    localStorage.removeItem('@ChallengeLOUD:user');
 
     setData({} as AuthState);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider value={{ token: data.token, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

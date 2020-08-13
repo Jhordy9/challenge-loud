@@ -43,12 +43,18 @@ export const Container = styled.div<ContainerProps>`
       color: #90ee90;
     `}
 
-  input {
+  textarea {
     flex: 1;
     background: transparent;
     border: 0;
     color: #f4ede8;
     margin-left: 16px;
+
+    resize: none;
+
+    ::-webkit-scrollbar {
+      background: #90ee90;
+    }
 
     &::placeholder {
       color: #c9c9c9;
