@@ -9,13 +9,13 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: #232139;
+  background: #2f4f4f;
   border-radius: 10px;
   padding: 16px;
   width: 100%;
 
   border: 2px solid #232129;
-  color: #666360;
+  color: #c9c9c9;
 
   display: flex;
   align-items: center;
@@ -48,14 +48,12 @@ export const Container = styled.div<ContainerProps>`
     background: transparent;
     border: 0;
     color: #f4ede8;
+    margin-left: 16px;
 
     &::placeholder {
-      color: #666360;
+      color: #c9c9c9;
     }
 
-    svg {
-      margin-right: 16px;
-    }
   }
 `;
 
