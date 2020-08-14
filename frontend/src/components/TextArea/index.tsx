@@ -40,6 +40,7 @@ const TextArea: React.FC<TextAreaProps> = ({ name }) => {
   return (
     <Container data-testid="textArea-container">
       <Markdown
+        refs={{ textarea: textAreaRef }}
         initialEditorHeight={200}
         value={value}
         onChange={setValue}
@@ -57,7 +58,6 @@ const TextArea: React.FC<TextAreaProps> = ({ name }) => {
             style: { background: 'none', height: '150px', color: '#f4ede8' },
             placeholder: 'Digite sua opinião aqui!',
             defaultValue,
-            ref: textAreaRef,
             name,
           },
         }}
