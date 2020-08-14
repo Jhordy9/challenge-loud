@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
+import ReactMde from 'react-mde';
 
 import Tooltip from '../Tooltip/index';
+import 'react-mde/lib/styles/css/react-mde-all.css';
 
 interface ContainerProps {
   isFocused?: boolean;
@@ -12,7 +14,7 @@ export const Container = styled.div<ContainerProps>`
   background: #2f4f4f;
   border-radius: 10px;
   padding: 16px;
-  width: 100%;
+  width: 700px;
 
   border: 2px solid #232129;
   color: #c9c9c9;
@@ -43,25 +45,50 @@ export const Container = styled.div<ContainerProps>`
       color: #90ee90;
     `}
 
-  textarea {
-    flex: 1;
-    background: transparent;
-    border: 0;
-    color: #f4ede8;
-    margin-left: 16px;
 
-    resize: none;
+  div {
+    border: none;
 
-    ::-webkit-scrollbar {
-      background: #90ee90;
+    color: #c9c9c9;
+
+    .grip {
+      background-color: transparent;
+      border: none;
+
+      svg {
+        display: none;
+      }
     }
 
-    &::placeholder {
+
+
+    .mde-header {
+      background: #2f4f4f;
+    }
+
+      .mde-tabs {
+      background: #2f4f4f;
+    }
+
+    button.selected {
+      width: 80px;
+    }
+
+    button {
       color: #c9c9c9;
     }
 
+    .mde-header-group {
+      background: #2f4f4f;
+    }
+
+    svg {
+      color: #c9c9c9;
+    }
   }
 `;
+
+export const Markdown = styled(ReactMde)``;
 
 export const Error = styled(Tooltip)`
   height: 20px;
