@@ -1,16 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import ReactMde from 'react-mde';
 
-import Tooltip from '../Tooltip/index';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 
-interface ContainerProps {
-  isFocused?: boolean;
-  isFilled?: boolean;
-  isErrored: boolean;
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   background: #2f4f4f;
   border-radius: 10px;
   padding: 16px;
@@ -26,26 +19,6 @@ export const Container = styled.div<ContainerProps>`
     margin-top: 8px;
   }
 
-  ${props =>
-    props.isErrored &&
-    css`
-      border-color: #c53030;
-    `}
-
-  ${props =>
-    props.isFocused &&
-    css`
-      color: #90ee90;
-      border-color: #90ee90;
-    `}
-
-  ${props =>
-    props.isFilled &&
-    css`
-      color: #90ee90;
-    `}
-
-
   div {
     border: none;
 
@@ -60,13 +33,11 @@ export const Container = styled.div<ContainerProps>`
       }
     }
 
-
-
     .mde-header {
       background: #2f4f4f;
     }
 
-      .mde-tabs {
+    .mde-tabs {
       background: #2f4f4f;
     }
 
@@ -89,20 +60,3 @@ export const Container = styled.div<ContainerProps>`
 `;
 
 export const Markdown = styled(ReactMde)``;
-
-export const Error = styled(Tooltip)`
-  height: 20px;
-
-  svg {
-    margin: 0;
-  }
-
-  span {
-    background: #c53030;
-    color: #fff;
-
-    &::before {
-      border-color: #c53030 transparent;
-    }
-  }
-`;

@@ -21,10 +21,7 @@ export const Title = styled(Input)`
   width: 400px;
 `;
 
-export const Description = styled(TextArea)`
-  height: 150px;
-  text-align: start;
-`;
+export const Description = styled(TextArea)``;
 
 export const OpinionTimeline = styled.div``;
 
