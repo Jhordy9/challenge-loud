@@ -59,6 +59,7 @@ routers.post(
 
     res.status(200).json({
       token: signJwt(user),
+      id: user.id
     });
   },
 );

@@ -4,47 +4,55 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { useHistory, Link } from 'react-router-dom';
-import { FiLock, FiLogIn, FiUser } from 'react-icons/fi';
+import { FiLock, FiLogIn, FiUser, FiMail } from 'react-icons/fi';
 
 import { Container, Content, AnimationContainer } from './styles';
 import Input from '../../components/Input/index';
 import Button from '../../components/Button';
-import { useAuth } from '../../hooks/auth';
 import { useNotification } from '../../hooks/notification';
 import getValidationErrors from '../../utils/getValidationErrors';
+import api from '../../services/api';
 
-interface SignInFormData {
+interface SignUpFormData {
   username: string;
+  email: string;
   password: string;
 }
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
-  const { signIn } = useAuth();
   const { addNotification } = useNotification();
 
   const handleSubmit = useCallback(
-    async (data: SignInFormData) => {
+    async (data: SignUpFormData) => {
       try {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
           username: Yup.string().required('Username obrigatório'),
-          password: Yup.string().required('Senha obrigatória'),
+          email: Yup.string()
+            .required('E-mail obrigatório')
+            .email('Digite um email válido'),
+          password: Yup.string()
+            .required('Senha obrigatória')
+            .min(8, 'Senha muito curta, deve conter no mínimo 8 caracteres'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await signIn({
-          username: data.username,
-          password: data.password,
-        });
+        await api.post('/register', data);
 
-        history.push('/timeline');
+        history.push('/');
+
+        addNotification({
+          type: 'success',
+          title: 'Cadastro realizado',
+          description: 'Você já pode fazer login na aplicação!',
+        });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -55,12 +63,13 @@ const SignIn: React.FC = () => {
         }
         addNotification({
           type: 'error',
-          title: 'Erro na autenticação',
-          description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
+          title: 'Erro no cadastro',
+          description:
+            'Ocorreu um erro ao fazer o cadastro, cheque as credenciais e tente novamente',
         });
       }
     },
-    [signIn, addNotification, history],
+    [addNotification, history],
   );
   return (
     <Container>
@@ -71,6 +80,8 @@ const SignIn: React.FC = () => {
 
             <Input name="username" icon={FiUser} placeholder="Username" />
 
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
+
             <Input
               name="password"
               icon={FiLock}
@@ -78,15 +89,15 @@ const SignIn: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit">Entrar</Button>
+            <Button type="submit">Cadastrar</Button>
           </Form>
-          <Link to="/signup">
+          <Link to="/">
             <FiLogIn />
-            Criar conta
+            Voltar para o login
           </Link>
         </AnimationContainer>
       </Content>
     </Container>
   );
 };
-export default SignIn;
+export default SignUp;
