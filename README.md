@@ -27,7 +27,7 @@ Desafio proposto para testar conhecimentos, organização do código e lógica d
 
 <p><b>Atenção!</b> Utilizado Typescript para o desenvolvimento</p>
 
-<h3>Text Editor 👨‍💻</h3>
+<h3>Editor de texto 👨‍💻</h3>
 
 -  [VSCode][vc] com [EditorConfig][vceditconfig] e [ESLint][vceslint]
 
@@ -37,7 +37,7 @@ Desafio proposto para testar conhecimentos, organização do código e lógica d
 -  [ExpressJS](https://expressjs.com/)
 -  [Prisma](https://www.prisma.io/)
 
-<h3>Web 📺</h3>
+<h3>Frontend 📺</h3>
 
 -  [styled-components](https://www.styled-components.com/)
 -  [ReactJS](https://reactjs.org/)
