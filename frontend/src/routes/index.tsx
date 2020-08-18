@@ -4,7 +4,7 @@ import { Switch } from 'react-router-dom';
 import Route from './Route';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
-import Timeline from '../pages/Timeline';
+import Feed from '../pages/Feed';
 
 const Routes: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const Routes: React.FC = () => {
       <Route path="/" exact component={SignIn} />
       <Route path="/signup" component={SignUp} />
 
-      <Route path="/timeline" component={Timeline} isPrivate />
+      <Route path="/feed" component={Feed} isPrivate />
     </Switch>
   );
 };
