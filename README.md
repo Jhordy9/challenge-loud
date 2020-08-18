@@ -17,11 +17,11 @@
  
 
 <p align="center">
-  <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-technologies">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-how-to-use">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-## :rocket: Technologies
+## :rocket: Tecnologias
 
 Desafio proposto para testar conhecimentos, organização do código e lógica de programação.
 
@@ -45,7 +45,7 @@ Desafio proposto para testar conhecimentos, organização do código e lógica d
 -  [Recoil - Gerenciador de Estados](https://recoiljs.org/)
 -  [Markdown](https://github.com/andrerpena/react-mde)
 
-## :information_source: How To Use
+## :information_source: Como usar
 
 To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v12][nodejs] or higher + [Yarn v1.22][yarn] or higher, [ReactJS v16][reactjs] or higher installed on your computer. From your command line:
 
