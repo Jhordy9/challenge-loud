@@ -21,8 +21,6 @@
   <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-<h2 align="center"> Project under development! </h2>
-
 ## :rocket: Technologies
 
 Desafio proposto para testar conhecimentos, organização do código e lógica de programação.
