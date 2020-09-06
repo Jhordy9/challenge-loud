@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="GoStack" src="https://github.com/Jhordy9/challenge-loud/blob/master/frontend/assets/sp.svg" />
+    <img alt="GoStack" src="https://github.com/Jhordy9/challenge-loud/blob/master/frontend/assets/sp.svg" height="200" />
     <br>
     Opiniões - São Paulo
 </h1>
