@@ -41,6 +41,11 @@ const TextArea: React.FC<TextAreaProps> = ({ name }) => {
     <Container data-testid="textArea-container">
       <Markdown
         refs={{ textarea: textAreaRef }}
+        toolbarCommands={[
+          ['header', 'bold', 'italic', 'strikethrough'],
+          ['link', 'quote', 'code', 'image'],
+          ['unordered-list', 'ordered-list'],
+        ]}
         initialEditorHeight={200}
         value={value}
         onChange={setValue}

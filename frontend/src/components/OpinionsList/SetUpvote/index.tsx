@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { Container, Upvote, UpvoteIcon } from './styles';
+import { Container, Upvote, UpvoteIcon, HasUpvoteIcon } from './styles';
 import api from '../../../services/api';
 import { useAuth } from '../../../hooks/auth';
 import { setLikedState } from '../../../atoms/index';
@@ -24,6 +24,8 @@ interface Params {
 const SetUpvote: React.FC<Params> = ({ id, upvotes_count }) => {
   const { idLogged } = useAuth();
 
+  const [hasUpvote, setHasUpvote] = useState(false);
+
   const liked = useRecoilValue(setLikedState);
   const [editLiked, setEditLiked] = useRecoilState(setLikedState);
 
@@ -38,19 +40,33 @@ const SetUpvote: React.FC<Params> = ({ id, upvotes_count }) => {
       if (getUserId?.user_id !== idLogged) {
         await api.post(`/opinions/${opinion_id}/vote`);
         setEditLiked(liked + 1);
+        setHasUpvote(true);
       } else if (getUserId?.user_id === idLogged) {
         await api.delete(`/opinions/${opinion_id}/vote`);
         setEditLiked(liked - 1);
+        setHasUpvote(false);
       }
     },
     [idLogged, liked, setEditLiked],
   );
 
+  useEffect(() => {
+    api.get<UpvoteData>(`/opinions/${id}`).then(res => {
+      res.data.upvotes.find(dt => {
+        return setHasUpvote(Boolean(dt.user_id === idLogged));
+      });
+    });
+  }, [id, idLogged, handleInsertUpvote]);
+
   return (
     <Container>
       <Upvote>
         <button type="button" onClick={() => handleInsertUpvote(id)}>
-          <UpvoteIcon size={20} />
+          {hasUpvote === true ? (
+            <HasUpvoteIcon size={20} />
+          ) : (
+              <UpvoteIcon size={20} />
+            )}
         </button>
 
         <span>{upvotes_count}</span>

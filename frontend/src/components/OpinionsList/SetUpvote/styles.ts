@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TiStarFullOutline } from 'react-icons/ti';
+import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti';
 
 export const Container = styled.div``;
 
@@ -19,11 +19,12 @@ export const Upvote = styled.div`
   }
 `;
 
-export const UpvoteIcon = styled(TiStarFullOutline)`
+export const HasUpvoteIcon = styled(TiStarFullOutline)`
   margin-right: 10px;
-  color: #fff;
+  color: #90ee90;
+`;
 
-  svg .liked {
-    color: #000;
-  }
+export const UpvoteIcon = styled(TiStarOutline)`
+  margin-right: 10px;
+  color: #90ee90;
 `;

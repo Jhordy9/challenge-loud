@@ -1,6 +1,8 @@
+/* eslint-disable react/no-danger */
 /* eslint-disable camelcase */
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
+import Marked from 'marked';
 
 import { FiSearch } from 'react-icons/fi';
 import { Container, OpinionTimeline, Filter, Opinions } from './styles';
@@ -30,15 +32,9 @@ const OpinionsList: React.FC = () => {
   const liked = useRecoilValue(setLikedState);
 
   useEffect(() => {
-    api
-      .get('/opinions', {
-        params: {
-          titleOpinion: searchValue,
-        },
-      })
-      .then(response => {
-        setDataOpinions(response.data.opinions);
-      });
+    api.get('/opinions').then(response => {
+      setDataOpinions(response.data.opinions);
+    });
   }, [liked, searchValue]);
 
   const handleSearchValue = useCallback(event => {
@@ -46,9 +42,9 @@ const OpinionsList: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const results = dataOpinions.filter(data =>
-      data.title.toLowerCase().includes(searchValue),
-    );
+    const results = dataOpinions.filter(data => {
+      return data.title.toLowerCase().includes(searchValue.toLowerCase());
+    });
     setSearchResult(results);
   }, [dataOpinions, searchValue]);
 
@@ -69,8 +65,12 @@ const OpinionsList: React.FC = () => {
         sortOpinions.map(({ id, title, content, upvotes_count }) => (
           <OpinionTimeline key={id}>
             <Opinions>
-              <h3>{title}</h3>
-              <p>{content}</p>
+              <p>{title}</p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: Marked(content) || '<p>&nbsp;</p>',
+                }}
+              />
 
               <SetUpvote id={id} upvotes_count={upvotes_count} />
             </Opinions>

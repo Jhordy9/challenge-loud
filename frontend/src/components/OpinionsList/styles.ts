@@ -20,13 +20,28 @@ export const Opinions = styled.div`
   border: 1px solid #232129;
   border-radius: 10px;
 
-  h3 {
+  > p {
+    font-size: 18px;
     font-weight: 500;
-    font-size: 20px;
+    border-bottom: 1px solid #232129;
+    padding-bottom: 3px;
   }
 
-  p {
+  div {
     margin-top: 15px;
-    font-size: 16px;
+    font-size: 12px;
+
+    li {
+      margin-left: 18px;
+    }
+
+    a {
+      color: #90ee90;
+    }
+
+    * {
+      font-size: 14px;
+      border: none;
+    }
   }
 `;

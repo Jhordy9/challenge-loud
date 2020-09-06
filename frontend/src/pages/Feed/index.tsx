@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import {
   Container,
   Content,
+  SignOutIcon,
   CreateOpinion,
   Title,
   Description,
@@ -16,6 +17,7 @@ import api from '../../services/api';
 import { useNotification } from '../../hooks/notification';
 import Button from '../../components/Button/index';
 import OpinionsList from '../../components/OpinionsList/index';
+import { useAuth } from '../../hooks/auth';
 
 interface CreateOpinionData {
   title: string;
@@ -25,6 +27,7 @@ interface CreateOpinionData {
 const Feed: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
+  const { signOut } = useAuth();
   const { addNotification } = useNotification();
 
   const handleSubmitOpinion = useCallback(
@@ -34,7 +37,7 @@ const Feed: React.FC = () => {
 
         await api.post('/opinions', data);
 
-        history.push('/timeline');
+        history.push('/feed');
 
         addNotification({
           type: 'success',
@@ -53,9 +56,16 @@ const Feed: React.FC = () => {
     [addNotification, history],
   );
 
+  const handleSignOut = useCallback(() => {
+    signOut();
+
+    history.push('/');
+  }, [history, signOut]);
+
   return (
     <Container>
       <Content>
+        <SignOutIcon size={40} onClick={handleSignOut} />
         <CreateOpinion>
           <Form ref={formRef} onSubmit={handleSubmitOpinion}>
             <Title name="title" placeholder="Título" />

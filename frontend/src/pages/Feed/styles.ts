@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { TiPower } from 'react-icons/ti';
 import Input from '../../components/Input/index';
 import TextArea from '../../components/TextArea/index';
 
@@ -15,7 +16,7 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
 
-  strong {
+  > strong {
     font-size: 30px;
     color: whitesmoke;
     border-bottom: 1px solid forestgreen;
@@ -32,3 +33,8 @@ export const Title = styled(Input)`
 `;
 
 export const Description = styled(TextArea)``;
+
+export const SignOutIcon = styled(TiPower)`
+  margin-bottom: 20px;
+  cursor: pointer;
+`;
