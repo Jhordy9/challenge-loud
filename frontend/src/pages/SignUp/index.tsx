@@ -76,7 +76,7 @@ const SignUp: React.FC = () => {
       <Content>
         <AnimationContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Faça seu login</h1>
+            <h1>Crie sua conta</h1>
 
             <Input name="username" icon={FiUser} placeholder="Username" />
 
